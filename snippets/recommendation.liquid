@@ -1,0 +1,22 @@
+{{ 'recommendation.css' | asset_url | stylesheet_tag }}
+
+<script>
+  setTimeout(() => {
+    const drawerContent = document.querySelector('.lcu__drawer__content');
+    const recommendationBlock = document.querySelector('.recommendation');
+
+    if (drawerContent && recommendationBlock) {
+      drawerContent.style.border = '1px solid red';
+      drawerContent.appendChild(recommendationBlock);
+    }
+
+
+    document.addEventListener('lcu:pre-purchase-recommendations', (event) => {
+      recommendationBlock.textContent = `Tag Matcher: ${event.detail.options.tagMatcher}`;
+    });
+  }, 1000)
+</script>
+
+<div class="recommendation">
+  Loading...
+</div>
